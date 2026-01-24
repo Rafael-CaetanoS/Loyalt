@@ -1,36 +1,32 @@
 ﻿namespace Identity.Domain.Entities;
 
-public class Users
+public class User
 {
     public Guid UserId { get; set; }
     public string UserName { get; set; }
     public string Email { get; set; }
     public string PasswordHash { get; set; }
-    public string Role { get; set; }
-    public Guid? CompanyId { get; set; }
     public bool IsActive { get; set; }
     public DateTime CreatedAt { get; set; }
 
 
-    private Users()
+    private User()
     {
     }
 
-    private Users(string name, string email, string passwordHash, string role, Guid? companyId, bool isActive, DateTime createdAt)
+    private User(string name, string email, string passwordHash, bool isActive, DateTime createdAt)
     {
         UserName = name;    
         UserId = Guid.NewGuid();
         Email = email;
         PasswordHash = passwordHash;
-        Role = role;
-        CompanyId = companyId;
         IsActive = isActive;
         CreatedAt = createdAt;
     }
 
-    public static Users Create(string userName ,string email, string passwordHash, string role, Guid companyId, bool isActive, DateTime createdAt)
+    public static User Create(string userName ,string email, string passwordHash, bool isActive, DateTime createdAt, bool EmailExist)
     {
-        return new Users(userName, email, passwordHash, role, companyId, isActive, createdAt);
+        return EmailExist ? throw new Exception("email in use") : new User(userName, email, passwordHash, isActive, createdAt);
     }
 
     public void UpdateEmail(string newEmail)
@@ -50,10 +46,5 @@ public class Users
     public void Activate()
     {
         IsActive = true;
-    }
-    
-    public void UpdateRole(string newRole)
-    {
-        Role = newRole;
     }
 }
