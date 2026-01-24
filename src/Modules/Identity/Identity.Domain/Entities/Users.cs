@@ -16,7 +16,7 @@ public class Users
     {
     }
 
-    private Users(string name, string email, string passwordHash, string role, Guid companyId, bool isActive, DateTime createdAt)
+    private Users(string name, string email, string passwordHash, string role, Guid? companyId, bool isActive, DateTime createdAt)
     {
         UserName = name;    
         UserId = Guid.NewGuid();
