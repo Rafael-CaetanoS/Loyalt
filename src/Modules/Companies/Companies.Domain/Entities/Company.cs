@@ -6,6 +6,8 @@ public class Company
     public Guid CompanyId { get; set; }
     public string Name { get; set; }
     public DateTime CreatedAt { get; set; }
+    public Guid UserId { get; set; }    
+    public bool IsActive { get; set; }
 
     private Company()
     {
