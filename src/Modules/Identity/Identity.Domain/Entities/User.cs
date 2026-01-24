@@ -14,19 +14,19 @@ public class User
     {
     }
 
-    private User(string name, string email, string passwordHash, bool isActive, DateTime createdAt)
+    private User(string name, string email, string passwordHash, DateTime createdAt)
     {
         UserName = name;    
         UserId = Guid.NewGuid();
         Email = email;
         PasswordHash = passwordHash;
-        IsActive = isActive;
+        IsActive = true;
         CreatedAt = createdAt;
     }
 
-    public static User Create(string userName ,string email, string passwordHash, bool isActive, DateTime createdAt, bool EmailExist)
+    public static User Create(string userName ,string email, string passwordHash, DateTime createdAt, bool EmailExist)
     {
-        return EmailExist ? throw new Exception("email in use") : new User(userName, email, passwordHash, isActive, createdAt);
+        return EmailExist ? throw new Exception("email in use") : new User(userName, email, passwordHash, createdAt);
     }
 
     public void UpdateEmail(string newEmail)
@@ -38,13 +38,8 @@ public class User
         PasswordHash = newPasswordHash;
     }
 
-    public void Deactivate()
+    public void AlterStatus()
     {
-        IsActive = false;
-    }
-
-    public void Activate()
-    {
-        IsActive = true;
+        IsActive = !IsActive;
     }
 }

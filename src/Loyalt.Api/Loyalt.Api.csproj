@@ -7,7 +7,30 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="MediatR" Version="14.0.0" />
+    <PackageReference Include="MediatR.Contracts" Version="2.0.1" />
+    <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="11.1.0" />
     <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="9.0.10" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="8.0.23" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Relational" Version="8.0.23" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Modules\Companies\Companies.Application\Companies.Application.csproj" />
+    <ProjectReference Include="..\Modules\Companies\Companies.Domain\Companies.Domain.csproj" />
+    <ProjectReference Include="..\Modules\Companies\Companies.Infrastructure\Companies.Infrastructure.csproj" />
+    <ProjectReference Include="..\Modules\Identity\Identity.Application\Identity.Application.csproj" />
+    <ProjectReference Include="..\Modules\Identity\Identity.Domain\Identity.Domain.csproj" />
+    <ProjectReference Include="..\Modules\Identity\Identity.Infrastructure\Identity.Infrastructure.csproj" />
+    <ProjectReference Include="..\Modules\Loyalty\Loyalty.Application\Loyalty.Application.csproj" />
+    <ProjectReference Include="..\Modules\Loyalty\Loyalty.Domain\Loyalty.Domain.csproj" />
+    <ProjectReference Include="..\Modules\Loyalty\Loyalty.Infrastructure\Loyalty.Infrastructure.csproj" />
+    <ProjectReference Include="..\Modules\Redemptions\Redemptions.Application\Redemptions.Application.csproj" />
+    <ProjectReference Include="..\Modules\Redemptions\Redemptions.Domain\Redemptions.Domain.csproj" />
+    <ProjectReference Include="..\Modules\Redemptions\Redemptions.Infrastructure\Redemptions.Infrastructure.csproj" />
+    <ProjectReference Include="..\Modules\Rewards\Rewards.Application\Rewards.Application.csproj" />
+    <ProjectReference Include="..\Modules\Rewards\Rewards.Domain\Rewards.Domain.csproj" />
+    <ProjectReference Include="..\Modules\Rewards\Rewards.Infrastructure\Rewards.Infrastructure.csproj" />
   </ItemGroup>
 
 </Project>
