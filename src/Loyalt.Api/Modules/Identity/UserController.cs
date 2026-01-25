@@ -1,5 +1,6 @@
 ﻿using Identity.Application.Users.Commands.CreateUser;
 using Identity.Application.Users.Queries.GetUserByEmail;
+using Identity.Application.Users.Queries.GetUserById;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
@@ -28,6 +29,14 @@ public class UserController : Controller
     public async Task<IActionResult> GetUserByEmail([FromQuery] string email)
     {
         var query = new GetUserByEmailQuery(email);
+        var result = await _mediator.Send(query);
+        return Ok(result);
+    }
+
+    [HttpGet("id")]
+    public async Task<IActionResult> GetUserById([FromQuery] Guid id)
+    {
+        var query = new GetUserByIdQuery(id);
         var result = await _mediator.Send(query);
         return Ok(result);
     }
