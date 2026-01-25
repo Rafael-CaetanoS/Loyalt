@@ -1,4 +1,5 @@
 ﻿using Identity.Application.Users.Commands.CreateUser;
+using Identity.Application.Users.Commands.UserLogin;
 using Identity.Application.Users.Queries.GetUserByEmail;
 using Identity.Application.Users.Queries.GetUserById;
 using MediatR;
@@ -23,6 +24,14 @@ public class UserController : Controller
         var command = new CreateUserCommand(request.UserName, request.Email, request.Password);
         await _mediator.Send(command);
         return Created();
+    }
+
+    [HttpPost("login")]
+    public async Task<IActionResult> UserLogin([FromBody] UserLoginRequest request)
+    {
+        var command = new UserLoginCommand(request.Email, request.Password);
+        var result = await _mediator.Send(command);
+        return Ok(result);
     }
 
     [HttpGet("email")]
