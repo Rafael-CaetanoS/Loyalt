@@ -5,7 +5,7 @@ namespace Identity.Infrastructure.Context;
 
 public class IdentityContext : DbContext
 {
-    public IdentityContext(DbContextOptions options) : base(options)
+    public IdentityContext(DbContextOptions<IdentityContext> options) : base(options)
     {
     }
     public DbSet<User> Users { get; set; }

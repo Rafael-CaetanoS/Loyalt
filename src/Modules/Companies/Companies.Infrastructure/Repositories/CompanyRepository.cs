@@ -17,8 +17,7 @@ public class CompanyRepository(CompanyContext context) : ICompanyRepository
          await context.Companies.AnyAsync(c => c.Name == Name);
 
     public async Task<List<Company>> GetAllAsync() =>
-        await context.Companies.ToListAsync();
-    
+        await context.Companies.Where(x => x.IsActive == true).ToListAsync();
 
     public Task<Company?> GetByIdAsync(Guid companyId) =>
         context.Companies.FirstOrDefaultAsync(c => c.CompanyId == companyId);

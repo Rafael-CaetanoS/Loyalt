@@ -1,4 +1,5 @@
 ﻿using Companies.Application.Companies.Command.CreateCompany;
+using Companies.Application.Companies.Queries.GetAllCompanies;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -27,6 +28,14 @@ public class CompanyController : Controller
         var command = new CreateCompanyCommand(request.Name, Guid.Parse(userId!));
         await _mediator.Send(command);
         return Created();
+    }
+
+    [HttpGet]
+    public async Task<IActionResult> GetAllCompanies()
+    {
+        var query = new GetAllCompaniesQuery();
+        var response = await _mediator.Send(query);
+        return Ok(response);
     }
 }
 
