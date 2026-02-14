@@ -1,9 +1,9 @@
 ﻿using Companies.Application.Companies.Command.CreateCompany;
+using Companies.Application.Companies.Command.UpdateCompany;
 using Companies.Application.Companies.Queries.GetAllCompanies;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 
 namespace Loyalt.Api.Modules.Companies;
@@ -36,6 +36,14 @@ public class CompanyController : Controller
         var query = new GetAllCompaniesQuery();
         var response = await _mediator.Send(query);
         return Ok(response);
+    }
+
+    [HttpPut]
+    public async Task<IActionResult> UpdateCompany([FromBody] UpdateCompanyRequest request)
+    {
+        var command = new UpdateCompanyCommand(request.CompanyId, request.Name);
+        await _mediator.Send(command);
+        return NoContent();
     }
 }
 
