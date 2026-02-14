@@ -13,15 +13,27 @@ public class Company
     {
     }
 
-    private Company(string name, DateTime createdAt)
+    private Company(string name, Guid userId)
     {
         CompanyId = Guid.NewGuid();
         Name = name;
-        CreatedAt = createdAt;
+        CreatedAt = DateTime.UtcNow;
+        UserId = userId;
+        IsActive = true;
     }
 
-    public static Company Create(string name, DateTime createdAt)
+    public static Company Create(string name,Guid userId, bool exist)
     {
-        return new Company(name, createdAt);
+        return exist? throw new Exception("ja existe uma loja com esse nome") : new Company(name, userId);
     }
+
+    public void Delete()
+    {
+        IsActive = false;
+    }
+
+    public void Update(string name)
+    {
+        Name = name;
+    }   
 }

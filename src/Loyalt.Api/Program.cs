@@ -1,4 +1,8 @@
-﻿using Identity.Application.Users.Commands.CreateUser;
+﻿using Companies.Application.Companies.Command.CreateCompany;
+using Companies.Domain.Repositories;
+using Companies.Infrastructure.Context;
+using Companies.Infrastructure.Repositories;
+using Identity.Application.Users.Commands.CreateUser;
 using Identity.Application.Users.Services;
 using Identity.Domain.Repositories;
 using Identity.Infrastructure.Context;
@@ -32,6 +36,8 @@ builder.Services.AddControllers()
 builder.Services.AddMediatR(cfg =>
 {
     cfg.RegisterServicesFromAssemblies(typeof(CreateUserCommandHandler).Assembly);
+    cfg.RegisterServicesFromAssemblies(typeof(CreateCompanyCommandHandler).Assembly);
+
 });
 
 InjectionDependency(builder);
@@ -86,6 +92,7 @@ app.Run();
 static void InjectionDependency(WebApplicationBuilder builder)
 {
     builder.Services.AddScoped<IUserRepository, UserRepository>();
+    builder.Services.AddScoped<ICompanyRepository, CompanyRepository>();
     builder.Services.AddScoped<IAuthService, JwtAuthService>();
 }
 
@@ -94,4 +101,6 @@ static void ConfigureDatabase(WebApplicationBuilder builder)
     var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
     builder.Services.AddDbContext<IdentityContext>(options =>
         options.UseNpgsql(connectionString));
+    builder.Services.AddDbContext<CompanyContext>(options =>
+    options.UseNpgsql(connectionString));
 }
