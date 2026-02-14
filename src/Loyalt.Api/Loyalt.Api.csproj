@@ -12,8 +12,12 @@
     <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="11.1.0" />
     <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="8.0.23" />
     <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="9.0.10" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="8.0.23" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Relational" Version="8.0.23" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="8.0.24" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="8.0.24">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Relational" Version="8.0.24" />
   </ItemGroup>
 
   <ItemGroup>
@@ -32,6 +36,9 @@
     <ProjectReference Include="..\Modules\Rewards\Rewards.Application\Rewards.Application.csproj" />
     <ProjectReference Include="..\Modules\Rewards\Rewards.Domain\Rewards.Domain.csproj" />
     <ProjectReference Include="..\Modules\Rewards\Rewards.Infrastructure\Rewards.Infrastructure.csproj" />
+    <ProjectReference Include="..\Modules\Sales\Sales.Application\Sales.Application.csproj" />
+    <ProjectReference Include="..\Modules\Sales\Sales.Domain\Sales.Domain.csproj" />
+    <ProjectReference Include="..\Modules\Sales\Sales.Infrastructure\Sales.Infrastructure.csproj" />
   </ItemGroup>
 
 </Project>
