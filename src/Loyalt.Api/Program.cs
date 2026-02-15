@@ -12,6 +12,10 @@ using MediatR;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
+using Sales.Application.Items.Command.CreateItem;
+using Sales.Domain.Repositories;
+using Sales.Infrastructure.Context;
+using Sales.Infrastructure.Repositories;
 using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -37,7 +41,7 @@ builder.Services.AddMediatR(cfg =>
 {
     cfg.RegisterServicesFromAssemblies(typeof(CreateUserCommandHandler).Assembly);
     cfg.RegisterServicesFromAssemblies(typeof(CreateCompanyCommandHandler).Assembly);
-
+    cfg.RegisterServicesFromAssemblies(typeof(CreateItemCommand).Assembly);
 });
 
 InjectionDependency(builder);
@@ -94,6 +98,7 @@ static void InjectionDependency(WebApplicationBuilder builder)
     builder.Services.AddScoped<IUserRepository, UserRepository>();
     builder.Services.AddScoped<ICompanyRepository, CompanyRepository>();
     builder.Services.AddScoped<IAuthService, JwtAuthService>();
+    builder.Services.AddScoped<IItemRepository, ItemRepository>();
 }
 
 static void ConfigureDatabase(WebApplicationBuilder builder)
@@ -102,5 +107,7 @@ static void ConfigureDatabase(WebApplicationBuilder builder)
     builder.Services.AddDbContext<IdentityContext>(options =>
         options.UseNpgsql(connectionString));
     builder.Services.AddDbContext<CompanyContext>(options =>
-    options.UseNpgsql(connectionString));
+        options.UseNpgsql(connectionString));
+    builder.Services.AddDbContext<SalesContext>(options =>
+        options.UseNpgsql(connectionString));
 }

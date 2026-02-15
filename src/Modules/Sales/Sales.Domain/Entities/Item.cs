@@ -24,7 +24,7 @@ public class Item
         IsActive = true;
     }
 
-    public Item CreateItem(string name, decimal price, Guid company, bool exist) => 
+    public static Item CreateItem(string name, decimal price, Guid company, bool exist) => 
        exist? throw new Exception("Item with the same name already exists") : new(name, price, company);
     
     public void UpdateItem(string name, decimal price)

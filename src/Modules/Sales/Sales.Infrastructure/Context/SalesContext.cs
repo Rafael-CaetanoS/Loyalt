@@ -9,9 +9,9 @@ public class SalesContext : DbContext
     {
     }
 
-    DbSet<Item> Item { get; set; }
-    DbSet<Sale> Sales { get; set; }
-    DbSet<SaleItems> SaleItems { get; set; }
+    public DbSet<Item> Item { get; set; }
+    public DbSet<Sale> Sales { get; set; }
+    public DbSet<SaleItems> SaleItems { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
