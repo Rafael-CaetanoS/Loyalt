@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Sales.Application.Items.Command.CreateItem;
+using Sales.Application.Items.Command.DeleteItems;
 using Sales.Application.Items.Command.UpdateItems;
 
 namespace Loyalt.Api.Modules.Sales.Items
@@ -30,6 +31,14 @@ namespace Loyalt.Api.Modules.Sales.Items
         public async Task<IActionResult> UpdateItem(int id, [FromBody] UpdateItemRequest request)
         {
             var command = new UpdateItemCommand(id, request.Name, request.Price);
+            await _mediator.Send(command);
+            return NoContent();
+        }
+
+        [HttpPut("{id}/status")]
+        public async Task<IActionResult> AlterStatusItem(int id)
+        {
+            var command = new AlterStatusItemCommand(id);
             await _mediator.Send(command);
             return NoContent();
         }

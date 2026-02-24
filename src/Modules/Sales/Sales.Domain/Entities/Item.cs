@@ -34,9 +34,9 @@ public class Item
         Updated = DateTime.UtcNow;
     }
 
-    public void DeleteItem()
+    public void AlterStatus()
     {
         Updated = DateTime.UtcNow;
-        IsActive = false;
+        IsActive = !IsActive;
     }
 }
