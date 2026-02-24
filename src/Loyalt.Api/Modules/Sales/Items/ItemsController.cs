@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using Sales.Application.Items.Command.CreateItem;
 using Sales.Application.Items.Command.DeleteItems;
 using Sales.Application.Items.Command.UpdateItems;
+using Sales.Application.Items.Queries.GetItemsIsActiveByCompany;
 
 namespace Loyalt.Api.Modules.Sales.Items
 {
@@ -17,6 +18,14 @@ namespace Loyalt.Api.Modules.Sales.Items
         public ItemsController(IMediator mediator)
         {
             _mediator = mediator;
+        }
+        
+        [HttpGet("company")]
+        public async Task<IActionResult> GetItemsIsActiveByCompany([FromQuery]Guid companyId)
+        {
+            var query = new GetItemsIsActiveByCompanyQuery(companyId);
+            var items = await _mediator.Send(query);
+            return Ok(items);
         }
 
         [HttpPost]
